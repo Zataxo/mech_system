@@ -1,49 +1,71 @@
+/**
+ * @typedef {Object} ResponseModel
+ * @property {boolean} success
+ * @property {number} code
+ * @property {string} message
+ * @property {*} data
+ */
+
 class Finalizer {
-  constructor() {
-    this._response = {
-      _isSuccess: false,
-      _code: 0,
-      _message: "",
-      _response: null,
-    };
+  /** @type {ResponseModel} */
+  #_response = {
+    success: false,
+    code: 0,
+    message: "",
+    data: null,
+  };
+
+  /**
+   * @param {number} value
+   */
+  set code(value) {
+    this.#_response.code = value;
   }
 
-  setResponse(r) {
-    this._response = r;
+  /**
+   * @param {string} value
+   */
+  set message(value) {
+    this.#_response.message = value;
   }
 
-  get resModel() {
-    return this._response;
+  /**
+   * @param {boolean} value
+   */
+  set success(value) {
+    this.#_response.success = value;
   }
 
-  set setCode(code) {
-    this._response._code = code;
+  /**
+   * @param {{ result: any }} value
+   */
+  set data(value) {
+    this.#_response.data = value;
   }
 
-  set setMsg(msg) {
-    this._response._message = msg;
-  }
-
-  set setSuccess(success) {
-    this._response._isSuccess = success;
-  }
-
-  set setData(data) {
-    this._response._response = data;
+  get response() {
+    return { ...this.#_response };
   }
 
   logger() {
     console.log("<<< Logger <===============> Logger >>>\n");
-    console.log("REQUEST SUCCESS  :  ", this._response._isSuccess);
-    console.log("STATUS CODE      :  ", this._response._code);
-    console.log("REQUEST MSG      :  ", this._response._message);
-    console.log("RESPONSE         :  ", this._response._response);
+    console.log("REQUEST SUCCESS  :  ", this.#_response.success);
+    console.log("STATUS CODE      :  ", this.#_response.code);
+    console.log("REQUEST MSG      :  ", this.#_response.message);
+    console.log("RESPONSE         :  ", this.#_response.data);
     console.log("<<< Logger <===============> Logger >>>\n");
   }
 
   finalize(res) {
     this.logger();
-    res.status(this._response._code).json(this._response);
+    res.status(this.response.code).json(this.response);
+  }
+
+  /**
+   * @type {{msg : any}}
+   */
+  static log(val) {
+    console.log(val);
   }
 }
 

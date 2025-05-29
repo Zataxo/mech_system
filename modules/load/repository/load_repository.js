@@ -3,18 +3,22 @@ const Finalizer = require("../../../helpers/finalizer");
 class LoadRepository extends InterfaceLoad {
   constructor() {
     super();
+    // this.init();
   }
   init() {
-    console.log("Class initilze");
+    console.log("Class init");
   }
   testFinalizer(req, res) {
     const finalizer = new Finalizer();
-    finalizer.setCode = 200;
-    finalizer.setSuccess = true;
-    finalizer.setMsg = "Operation completed successfully";
-    finalizer.setData = { user: "Jane Doe" };
+    // finalizer._response.
+    finalizer.code = 200;
+    finalizer.success = true;
+    finalizer.message = "Operation completed successfully";
+    finalizer.data = {
+      result: [],
+    };
 
-    finalizer.setResponse(finalizer.resModel);
+    // finalizer.setResponse(finalizer.resModel);
 
     finalizer.finalize(res); //
   }
