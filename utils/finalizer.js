@@ -51,7 +51,7 @@ class Finalizer {
     this.#_response.success = true;
     this.#_response.message = msg;
     this.#_response.code = code;
-    this.#_response.data = { result: data };
+    this.#_response.data = data;
     this.#_finalize(res);
   }
   failureReq(res, msg, code) {
@@ -73,29 +73,6 @@ class Finalizer {
   #_finalize(res) {
     this.logger();
     res.status(this.response.code).json(this.response);
-  }
-
-  /**
-   * @param {*} val
-   * @returns {boolean}
-   */
-  static isEmpty(val) {
-    if (val == null || val == undefined) return true;
-
-    if (typeof val === "string") return val.trim() === "";
-
-    if (Array.isArray(val)) return val.length === 0;
-
-    if (typeof val === "object") return Object.keys(val).length === 0;
-
-    return false;
-  }
-
-  /**
-   * @param {*} val
-   */
-  static log(val) {
-    console.log(val);
   }
 }
 

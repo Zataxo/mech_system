@@ -1,5 +1,11 @@
 class InterfacUser {
-  #_requiredMethods = ["signIn", "signUp", "resetPassword", "verify"];
+  #_requiredMethods = [
+    "signIn",
+    "signUp",
+    "resetPassword",
+    "verify",
+    "getAllUsers",
+  ];
 
   constructor() {
     this.#_safeGuard();

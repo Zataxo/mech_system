@@ -1,6 +1,6 @@
 const UserInterface = require("../interface/user_interface");
 const UserService = require("../service/user_service");
-const Finalizer = require("../../../helpers/finalizer");
+// const Finalizer = require("../../../utils/finalizer");
 
 class UserRepository extends UserInterface {
   constructor() {
@@ -24,6 +24,11 @@ class UserRepository extends UserInterface {
     const userService = new UserService();
     userService.verify(req, res);
   }
+  getAllUsers(req, res) {
+    const userService = new UserService();
+    userService.getAllUsers(req, res);
+  }
+
   // #_loadInstace(){
   //   const uService = new UserService();
   // }

@@ -1,5 +1,5 @@
 const InterfaceLoad = require("../interface/load_interface");
-const Finalizer = require("../../../helpers/finalizer");
+const Finalizer = require("../../../utils/finalizer");
 class LoadRepository extends InterfaceLoad {
   constructor() {
     super();
