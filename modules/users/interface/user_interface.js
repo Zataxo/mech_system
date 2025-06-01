@@ -5,6 +5,7 @@ class InterfacUser {
     "resetPassword",
     "verify",
     "getAllUsers",
+    "controlAccount",
   ];
 
   constructor() {

@@ -35,6 +35,11 @@ class Utilities {
 
     return false;
   }
+
+  /**
+   * @param {int} val
+   * @returns {boolean}
+   */
 }
 
 module.exports = Utilities;

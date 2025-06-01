@@ -4,17 +4,12 @@ const AppConstants = require("../../../helpers/app_constants");
 const { log, isDuplicateEmail, isEmpty } = require("../../../utils/utilities");
 const { Op } = require("sequelize");
 const JWT = require("jsonwebtoken");
-// const mailService = require("../../../utils/email_service");
 
 class UserService {
   constructor() {
     this.selfFinalizer = new Finalizer();
   }
   signIn(req, res) {
-    log(req.body);
-    // if (isEmpty(req.body.phoneNo) && isEmpty(req.body.email)) {
-    //   return this.selfFinalizer.failureReq(res, "Bad request", 400);
-    // }
     const { phoneNo, email } = req.body;
     if (!phoneNo && !email) {
       return this.selfFinalizer.failureReq(res, "Bad request", 400);
@@ -50,7 +45,7 @@ class UserService {
             );
           });
         } else {
-          return this.selfFinalizer.failureReq(res, "User not registered", 404);
+          this.selfFinalizer.failureReq(res, "User not registered", 404);
         }
       })
       .catch((err) => {
@@ -72,6 +67,7 @@ class UserService {
       email: email,
       userType: AppConstants.userType.super,
       isVerified: false,
+      isEnabled: false,
     };
 
     models.User.create(userObj)
@@ -89,8 +85,41 @@ class UserService {
   verify(req, res) {
     res.send("signIn");
   }
-  getAllUsers() {
-    res.send("all users");
+
+  getAllUsers(req, res) {
+    models.User.findAll()
+      .then((users) => {
+        if (isEmpty(users)) {
+          return this.selfFinalizer.failureReq(
+            res,
+            "No registered user yet",
+            404
+          );
+        }
+        this.selfFinalizer.successReq(res, users, "Fetched successfully", 200);
+      })
+      .catch((err) => {
+        this.selfFinalizer.failureReq(res, err, 500);
+      });
+  }
+  controlAccount(req, res) {
+    const { isEnabled, target } = req.body;
+    log(req.body);
+    if (isEmpty(isEnabled) || isEmpty(target)) {
+      return this.selfFinalizer.failureReq(res, "Bad request", 400);
+    }
+    models.User.update({ isEnabled: isEnabled }, { where: { id: target } })
+      .then((flag) => {
+        if (flag == 1) {
+          let msg = isEnabled ? "Account activated" : "Account disabled";
+          return this.selfFinalizer.successReq(res, flag, msg, 200);
+        } else {
+          return this.selfFinalizer.failureReq(res, "No user to update", 404);
+        }
+      })
+      .catch((err) => {
+        this.selfFinalizer.failureReq(res, err, 500);
+      });
   }
 }
 module.exports = UserService;

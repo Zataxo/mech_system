@@ -28,6 +28,10 @@ class UserRepository extends UserInterface {
     const userService = new UserService();
     userService.getAllUsers(req, res);
   }
+  controlAccount(req, res) {
+    const userService = new UserService();
+    userService.controlAccount(req, res);
+  }
 
   // #_loadInstace(){
   //   const uService = new UserService();

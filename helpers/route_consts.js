@@ -7,5 +7,7 @@ module.exports = class RouteConstants {
     signUp: "/signUp",
     resetPassword: "/resetPassword",
     verify: "/verify",
+    getAllUsers: "/getAllUsers",
+    controlAccount: "/controlAccount",
   };
 };
