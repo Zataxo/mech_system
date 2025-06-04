@@ -37,6 +37,20 @@ class Utilities {
   }
 
   /**
+   *
+   * @param {array[]} val
+   * @returns {boolean}
+   */
+  static isListContainEmptyVal  (val)  {
+    val.forEach((item) => {
+      if(item == null || item === "" ) return true;
+
+    });
+    return false;
+
+  }
+
+  /**
    * @param {int} val
    * @returns {boolean}
    */

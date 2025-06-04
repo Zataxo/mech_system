@@ -58,8 +58,8 @@ class UserService {
     if (!phoneNo || !email) {
       return this.selfFinalizer.failureReq(res, "Bad request", 400);
     }
-    const isEmailDublicated = await isDuplicateEmail(email);
-    if (isEmailDublicated) {
+    const isEmailDuplicated = await isDuplicateEmail(email);
+    if (isEmailDuplicated) {
       return this.selfFinalizer.failureReq(res, "Duplicated Email", 400);
     }
     const userObj = {
