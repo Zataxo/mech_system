@@ -17,6 +17,8 @@ module.exports = (sequelize, DataTypes) => {
     phoneNo: DataTypes.STRING,
     email: DataTypes.STRING,
     userType: DataTypes.ENUM('SUPER', 'NORMAL'),
+    otp: DataTypes.STRING,
+    otpUsed: DataTypes.BOOLEAN,
     isVerified: DataTypes.BOOLEAN,
     isEnabled: DataTypes.BOOLEAN
   }, {

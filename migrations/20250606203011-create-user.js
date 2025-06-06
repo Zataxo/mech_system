@@ -2,24 +2,33 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('LoadProjects', {
+    await queryInterface.createTable('Users', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      lProjName: {
+      phoneNo: {
         type: Sequelize.STRING
       },
-      lProjConfigId: {
-        type: Sequelize.INTEGER
+      email: {
+        type: Sequelize.STRING
       },
-      shareable: {
+      userType: {
+        type: Sequelize.ENUM('SUPER', 'NORMAL')
+      },
+      otp: {
+        type: Sequelize.STRING
+      },
+      otpUsed: {
         type: Sequelize.BOOLEAN
       },
-      shareRestrictions: {
-        type: Sequelize.ENUM('NON', 'EDIT', 'VIEW')
+      isVerified: {
+        type: Sequelize.BOOLEAN
+      },
+      isEnabled: {
+        type: Sequelize.BOOLEAN
       },
       createdAt: {
         allowNull: false,
@@ -32,6 +41,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('LoadProjects');
+    await queryInterface.dropTable('Users');
   }
 };

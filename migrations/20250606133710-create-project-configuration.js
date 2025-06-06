@@ -33,11 +33,14 @@ module.exports = {
       cpWater: {
         type: Sequelize.FLOAT
       },
-      upsEffiency: {
+      upsEfficiency: {
         type: Sequelize.FLOAT
       },
       batteryHeapDecp: {
         type: Sequelize.FLOAT
+      },
+      userId: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,

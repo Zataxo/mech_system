@@ -1,5 +1,7 @@
-"use strict";
-const { Model } = require("sequelize");
+'use strict';
+const {
+  Model
+} = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class ProjectConfiguration extends Model {
     /**
@@ -11,23 +13,21 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  ProjectConfiguration.init(
-    {
-      country: DataTypes.STRING,
-      city: DataTypes.STRING,
-      dbtMax: DataTypes.FLOAT,
-      wbtMax: DataTypes.FLOAT,
-      elevation: DataTypes.FLOAT,
-      chilledWater: DataTypes.FLOAT,
-      glycol: DataTypes.FLOAT,
-      cpWater: DataTypes.FLOAT,
-      upsEffiency: DataTypes.FLOAT,
-      batteryHeapDecp: DataTypes.FLOAT,
-    },
-    {
-      sequelize,
-      modelName: "ProjectConfiguration",
-    }
-  );
+  ProjectConfiguration.init({
+    country: DataTypes.STRING,
+    city: DataTypes.STRING,
+    dbtMax: DataTypes.FLOAT,
+    wbtMax: DataTypes.FLOAT,
+    elevation: DataTypes.FLOAT,
+    chilledWater: DataTypes.FLOAT,
+    glycol: DataTypes.FLOAT,
+    cpWater: DataTypes.FLOAT,
+    upsEfficiency: DataTypes.FLOAT,
+    batteryHeapDecp: DataTypes.FLOAT,
+    userId: DataTypes.INTEGER
+  }, {
+    sequelize,
+    modelName: 'ProjectConfiguration',
+  });
   return ProjectConfiguration;
 };

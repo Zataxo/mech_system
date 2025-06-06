@@ -33,6 +33,15 @@ module.exports = {
       ventilationType: {
         type: Sequelize.ENUM('VENTILATION_ONLY', 'NO_VENTILATION', 'VENTILATION_WITH_PRESSURIZATION')
       },
+      humidityLv: {
+        type: Sequelize.FLOAT
+      },
+      areaLv: {
+        type: Sequelize.FLOAT
+      },
+      ventilationLv: {
+        type: Sequelize.FLOAT
+      },
       zoneId: {
         type: Sequelize.INTEGER
       },

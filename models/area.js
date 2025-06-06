@@ -22,6 +22,9 @@ module.exports = (sequelize, DataTypes) => {
     areaType: DataTypes.ENUM('POWER_ROOM', 'POD_AREA', 'BATTERY_ROOM', 'CORRIDOR', 'LV_ROOM', 'MMR_ROOM', 'MV_ROOM', 'TR_ROOM', 'GENSET_ROOM'),
     batteryType: DataTypes.ENUM('VRLA', 'LITHIUM'),
     ventilationType: DataTypes.ENUM('VENTILATION_ONLY', 'NO_VENTILATION', 'VENTILATION_WITH_PRESSURIZATION'),
+    humidityLv: DataTypes.FLOAT,
+    areaLv: DataTypes.FLOAT,
+    ventilationLv: DataTypes.FLOAT,
     zoneId: DataTypes.INTEGER
   }, {
     sequelize,
